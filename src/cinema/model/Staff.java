@@ -1,41 +1,35 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package cinema.model;
 
 import java.util.Date;
+import java.text.SimpleDateFormat;
 
-/**
- *
- * @author ADMIN
- */
 public class Staff {
-    private int id;
+    private String id;
     private String name;
-    private Date birthDate;
+    private Date dateOfBirth;
     private String gender;
     private int dayWorking;
-    private String IdentityCardNumber;
+    private String identityCardNumber;
     private String position;
-    private long salary;
+    private double salary;
 
-    public Staff(int id, String name, Date birthDate, String gender, int dayWorking, String IdentityCardNumber, String position, long salary) {
+    public Staff(String id, String name, Date dateOfBirth, String gender, int dayWorking, String identityCardNumber, String position, double salary) {
         this.id = id;
         this.name = name;
-        this.birthDate = birthDate;
+        this.dateOfBirth = dateOfBirth;
         this.gender = gender;
         this.dayWorking = dayWorking;
-        this.IdentityCardNumber = IdentityCardNumber;
+        this.identityCardNumber = identityCardNumber;
         this.position = position;
         this.salary = salary;
     }
 
-    public int getId() {
+    // Getters and Setters
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -47,12 +41,12 @@ public class Staff {
         this.name = name;
     }
 
-    public Date getBirthDate() {
-        return birthDate;
+    public Date getDateOfBirth() {
+        return dateOfBirth;
     }
 
-    public void setBirhtDate(Date birthDate) {
-        this.birthDate = birthDate;
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 
     public String getGender() {
@@ -72,11 +66,11 @@ public class Staff {
     }
 
     public String getIdentityCardNumber() {
-        return IdentityCardNumber;
+        return identityCardNumber;
     }
 
-    public void setIdentityCardNumber(String IdentityCardNumber) {
-        this.IdentityCardNumber = IdentityCardNumber;
+    public void setIdentityCardNumber(String identityCardNumber) {
+        this.identityCardNumber = identityCardNumber;
     }
 
     public String getPosition() {
@@ -87,19 +81,26 @@ public class Staff {
         this.position = position;
     }
 
-    public long getSalary() {
+    public double getSalary() {
         return salary;
     }
 
-    public void setSalary(long salary) {
+    public void setSalary(double salary) {
         this.salary = salary;
     }
 
     @Override
     public String toString() {
-        return "Staff{" + "id=" + id + ", name=" + name + ", dateOfBirth=" + birthDate + ", gender=" + gender + ", dayWorking=" + dayWorking + ", IdentityCardNumber=" + IdentityCardNumber + ", position=" + position + ", salary=" + salary + '}';
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        return "Staff{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", dateOfBirth=" + sdf.format(dateOfBirth) +
+                ", gender='" + gender + '\'' +
+                ", dayWorking=" + dayWorking +
+                ", identityCardNumber='" + identityCardNumber + '\'' +
+                ", position='" + position + '\'' +
+                ", salary=" + salary +
+                '}';
     }
-    
-    
-    
 }
