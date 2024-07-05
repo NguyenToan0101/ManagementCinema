@@ -1,0 +1,10 @@
+The Shawshank Redemption:Frank Darabont:142:Drama,Crime:23/09/1994
+The Godfather:Francis Ford Coppola:175:Drama,Crime:24/03/1972
+The Dark Knight:Christopher Nolan:152:Action,Crime,Drama:18/07/2008
+Inception:Christopher Nolan:148:Action,Sci-Fi:16/07/2010
+Forrest Gump:Robert Zemeckis:142:Drama,Comedy:06/07/1994
+The Lord of the Rings: The Fellowship of the Ring:Peter Jackson:178:Fantasy,Adventure:19/12/2001
+Star Wars: Episode IV - A New Hope:George Lucas:121:Action,Adventure,Sci-Fi:25/05/1977
+The Matrix:The Wachowskis:136:Action,Sci-Fi:31/03/1999
+Pulp Fiction:Quentin Tarantino:154:Crime,Drama:14/10/1994
+The Silence of the Lambs:Jonathan Demme:118:Thriller,Crime:14/02/1991
