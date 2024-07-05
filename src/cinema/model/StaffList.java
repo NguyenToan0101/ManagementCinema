@@ -1,5 +1,6 @@
 package cinema.model;
 
+import cinema.view.Menu;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -10,9 +11,11 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Scanner;
 
 public class StaffList {
     private List<Staff> staffList;
+    Utils until = new Utils();
 
     public StaffList(String filename) {
         this.staffList = new ArrayList<>();
@@ -57,72 +60,151 @@ public class StaffList {
     }
 
     // Search staff by any criteria
-    public List<Staff> searchByCriteria(String criteria, String value) {
-        List<Staff> result = new ArrayList<>();
-        for (Staff staff : staffList) {
-            switch (criteria.toLowerCase()) {
-                case "id":
-                    if (staff.getId().equalsIgnoreCase(value)) result.add(staff);
-                    break;
-                case "name":
-                    if (staff.getName().equalsIgnoreCase(value)) result.add(staff);
-                    break;
-                case "dateofbirth":
-                    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-                    if (sdf.format(staff.getDateOfBirth()).equalsIgnoreCase(value)) result.add(staff);
-                    break;
-                case "gender":
-                    if (staff.getGender().equalsIgnoreCase(value)) result.add(staff);
-                    break;
-                case "dayworking":
-                    if (staff.getDayWorking() == Integer.parseInt(value)) result.add(staff);
-                    break;
-                case "identitycardnumber":
-                    if (staff.getIdentityCardNumber().equalsIgnoreCase(value)) result.add(staff);
-                    break;
-                case "position":
-                    if (staff.getPosition().equalsIgnoreCase(value)) result.add(staff);
-                    break;
-                case "salary":
-                    if (staff.getSalary() == Double.parseDouble(value)) result.add(staff);
-                    break;
-                default:
-                    break;
+  public void searchByCriteria() {
+        Scanner scanner = new Scanner(System.in);
+        String[] searchArr = {"ID", "Name", "Date of Birth", "Gender", "Day Working", "Identity Card Number", "Position", "Salary", "Exit"};
+        Menu searchMenu = new Menu("Search Staff", searchArr) {
+            @Override
+            public void execute(int choice) {
+                boolean found = false;
+                String value = "";
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                switch (choice) {
+                    case 1:
+                        System.out.print("Enter ID: ");
+                        value = scanner.nextLine();
+                        for (Staff staff : staffList) {
+                            if (staff.getId().equalsIgnoreCase(value)) {
+                                System.out.println("Found: " + staff);
+                                found = true;
+                            }
+                        }
+                        break;
+                    case 2:
+                        System.out.print("Enter Name: ");
+                        value = scanner.nextLine();
+                        for (Staff staff : staffList) {
+                            if (staff.getName().equalsIgnoreCase(value)) {
+                                System.out.println("Found: " + staff);
+                                found = true;
+                            }
+                        }
+                        break;
+                    case 3:
+                        System.out.print("Enter Date of Birth (dd/MM/yyyy): ");
+                        value = scanner.nextLine();
+                        for (Staff staff : staffList) {
+                            if (sdf.format(staff.getDateOfBirth()).equalsIgnoreCase(value)) {
+                                System.out.println("Found: " + staff);
+                                found = true;
+                            }
+                        }
+                        break;
+                    case 4:
+                        System.out.print("Enter Gender: ");
+                        value = scanner.nextLine();
+                        for (Staff staff : staffList) {
+                            if (staff.getGender().equalsIgnoreCase(value)) {
+                                System.out.println("Found: " + staff);
+                                found = true;
+                            }
+                        }
+                        break;
+                    case 5:
+                        System.out.print("Enter Day Working: ");
+                        value = scanner.nextLine();
+                        for (Staff staff : staffList) {
+                            if (staff.getDayWorking() == Integer.parseInt(value)) {
+                                System.out.println("Found: " + staff);
+                                found = true;
+                            }
+                        }
+                        break;
+                    case 6:
+                        System.out.print("Enter Identity Card Number: ");
+                        value = scanner.nextLine();
+                        for (Staff staff : staffList) {
+                            if (staff.getIdentityCardNumber().equalsIgnoreCase(value)) {
+                                System.out.println("Found: " + staff);
+                                found = true;
+                            }
+                        }
+                        break;
+                    case 7:
+                        System.out.print("Enter Position: ");
+                        value = scanner.nextLine();
+                        for (Staff staff : staffList) {
+                            if (staff.getPosition().equalsIgnoreCase(value)) {
+                                System.out.println("Found: " + staff);
+                                found = true;
+                            }
+                        }
+                        break;
+                    case 8:
+                        System.out.print("Enter Salary: ");
+                        value = scanner.nextLine();
+                        for (Staff staff : staffList) {
+                            if (staff.getSalary() == Double.parseDouble(value)) {
+                                System.out.println("Found: " + staff);
+                                found = true;
+                            }
+                        }
+                        break;
+                    case 9:
+                        return;
+                    default:
+                        System.out.println("Invalid choice.");
+                        break;
+                }
+                if (!found) {
+                    System.out.println("NOT FOUND");
+                }
             }
-        }
-        return result;
+        };
+        searchMenu.run();
     }
 
-    // Sort staff by any criteria
-    public void sortByCriteria(String criteria) {
-        switch (criteria.toLowerCase()) {
-            case "id":
-                staffList.sort(Comparator.comparing(Staff::getId));
-                break;
-            case "name":
-                staffList.sort(Comparator.comparing(Staff::getName));
-                break;
-            case "dateofbirth":
-                staffList.sort(Comparator.comparing(Staff::getDateOfBirth));
-                break;
-            case "gender":
-                staffList.sort(Comparator.comparing(Staff::getGender));
-                break;
-            case "dayworking":
-                staffList.sort(Comparator.comparingInt(Staff::getDayWorking));
-                break;
-            case "identitycardnumber":
-                staffList.sort(Comparator.comparing(Staff::getIdentityCardNumber));
-                break;
-            case "position":
-                staffList.sort(Comparator.comparing(Staff::getPosition));
-                break;
-            case "salary":
-                staffList.sort(Comparator.comparingDouble(Staff::getSalary));
-                break;
-            default:
-                break;
-        }
+ public void sortByCriteria() {
+        Scanner scanner = new Scanner(System.in);
+        String[] sortArr = {"ID", "Name", "Date of Birth", "Gender", "Day Working", "Identity Card Number", "Position", "Salary", "Exit"};
+        Menu sortMenu = new Menu("Sort Staff", sortArr) {
+            @Override
+            public void execute(int choice) {
+                switch (choice) {
+                    case 1:
+                        staffList.sort(Comparator.comparing(Staff::getId));
+                        break;
+                    case 2:
+                        staffList.sort(Comparator.comparing(Staff::getName));
+                        break;
+                    case 3:
+                        staffList.sort(Comparator.comparing(Staff::getDateOfBirth));
+                        break;
+                    case 4:
+                        staffList.sort(Comparator.comparing(Staff::getGender));
+                        break;
+                    case 5:
+                        staffList.sort(Comparator.comparingInt(Staff::getDayWorking));
+                        break;
+                    case 6:
+                        staffList.sort(Comparator.comparing(Staff::getIdentityCardNumber));
+                        break;
+                    case 7:
+                        staffList.sort(Comparator.comparing(Staff::getPosition));
+                        break;
+                    case 8:
+                        staffList.sort(Comparator.comparingDouble(Staff::getSalary));
+                        break;
+                    case 9:
+                        return;
+                    default:
+                        System.out.println("Invalid choice.");
+                        break;
+                }
+                System.out.println("Staff list sorted by " + sortArr[choice - 1]);
+            }
+        };
+        sortMenu.run();
     }
 
     // Write data to file
