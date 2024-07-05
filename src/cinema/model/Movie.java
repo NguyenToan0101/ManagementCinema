@@ -4,25 +4,27 @@
  */
 package cinema.model;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
  *
  * @author ADMIN
  */
-public class Movie {
+public class Movie implements Comparable<Movie>{
     private String title;
     private String director;
-    private int movieDuration;
+    private String movieDuration;
     private String genre;
     private Date premiereDate;
 
-    public Movie(String title, String director, int movieDuration, String genre, Date premiereDate) {
+    public Movie(String title, String director, String movieDuration, String genre, String premiereDate) throws ParseException {
         this.title = title;
         this.director = director;
         this.movieDuration = movieDuration;
         this.genre = genre;
-        this.premiereDate = premiereDate;
+        setPremiereDate(premiereDate);
     }
 
     public String getTitle() {
@@ -41,11 +43,11 @@ public class Movie {
         this.director = director;
     }
 
-    public int getMovieDuration() {
+    public String getMovieDuration() {
         return movieDuration;
     }
 
-    public void setMovieDuration(int movieDuration) {
+    public void setMovieDuration(String movieDuration) {
         this.movieDuration = movieDuration;
     }
 
@@ -58,16 +60,26 @@ public class Movie {
     }
 
     public Date getPremiereDate() {
+
         return premiereDate;
+
     }
 
-    public void setPremiereDate(Date premiereDate) {
-        this.premiereDate = premiereDate;
+    public void setPremiereDate(String premiereDate) throws ParseException {
+        SimpleDateFormat date = new SimpleDateFormat("dd/MM/yyyy");
+        this.premiereDate = date.parse(premiereDate);
     }
+
+
 
     @Override
     public String toString() {
         return "Movie{" + "title=" + title + ", director=" + director + ", movieDuration=" + movieDuration + ", genre=" + genre + ", premiereDate=" + premiereDate + '}';
+    }
+
+    @Override
+    public int compareTo(Movie o) {
+        return o.getPremiereDate().compareTo(this.getPremiereDate());
     }
     
    
