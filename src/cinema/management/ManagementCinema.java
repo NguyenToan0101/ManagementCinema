@@ -4,17 +4,41 @@
  */
 package cinema.management;
 
+import cinema.model.StaffList;
+import cinema.view.Menu;
+
 /**
  *
  * @author ADMIN
  */
-public class ManagementCinema {
+public class ManagementCinema extends Menu{
+    
+    static String title = "Your position";
+    static String[] arr = {"ADMIN", "STAFF", "CUSTOMER", "EXIT"};
+    
 
-    /**
-     * @param args the command line arguments
-     */
+    @Override
+    public void execute(int choice) {
+        switch (choice) {
+            case 1:
+                
+                break;               
+            case 2:  
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            default:
+                throw new AssertionError();
+        }
+    }
+
     public static void main(String[] args) {
-        // TODO code application logic here
+              ManagementCinema mm = new ManagementCinema ();
+        mm.run();
     }
     
+    
+ 
 }
