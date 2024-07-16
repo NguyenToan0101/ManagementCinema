@@ -10,7 +10,6 @@ import cinema.model.MovieList;
 import cinema.model.Showtimes;
 import cinema.model.Utils;
 import cinema.model.Ticket;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 /**
@@ -32,7 +31,7 @@ public class CustomerController {
                 + "1.Adult\n"
                 + "2.Student\n"
                 + "3.Children, elders\n"
-                + "4.Member");
+                + "4.Member\n");
         int selectTypePerson = Utils.getNumber("Select your type : ", "Invalid value\nPlease input (1-3)",
                 0, 4, Integer::parseInt);
         ArrayList<Movie> movies = new ArrayList();
@@ -91,7 +90,7 @@ public class CustomerController {
         long price = (long) ticket.calculateTicketPrice(selectSeat, selectTypePerson, selectedShowtime.getShowtimes(), selectedShowtime.getShowtimes());
        
         if(price == -1){
-            System.out.println("Sorry.Invalid value hour of showtime\nPlease select again: ");
+            System.out.println("-------------------\nSorry.Invalid value hour of showtime\nPlease select again: ");
             ticketBooking();
         }else{
         System.out.printf("------------------------\nMoney must be paid :\n%d VND\n", price);}

@@ -97,7 +97,7 @@ public class MovieList {
         Movie newSMovie = new Movie(title, director, movieDuration, genre, premiereDate);
 
     }
-
+    
     public void sortMovieByTitle() {
 
         movieList.sort(Comparator.comparing(Movie::getTitle));
