@@ -4,9 +4,11 @@
  */
 package cinema.model;
 
+import java.text.NumberFormat;
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Locale;
 
 /**
  *
@@ -178,6 +180,11 @@ price = 50000;
         return dateOfWeek.getDayOfWeek().equals(DayOfWeek.MONDAY) 
                 || dateOfWeek.getDayOfWeek().equals(DayOfWeek.TUESDAY) 
                 || dateOfWeek.getDayOfWeek().equals(DayOfWeek.THURSDAY); 
+    }
+    //Format money follow format VND
+    public String formatCurrency(long price){
+        NumberFormat formatter = NumberFormat.getCurrencyInstance(new Locale("vi","VN"));
+        return formatter.format(price);
     }
 
 }

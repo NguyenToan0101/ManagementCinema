@@ -10,7 +10,9 @@ import cinema.model.MovieList;
 import cinema.model.Showtimes;
 import cinema.model.Utils;
 import cinema.model.Ticket;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.HashSet;
 
 /**
  *
@@ -37,18 +39,19 @@ public class CustomerController {
         ArrayList<Movie> movies = new ArrayList();
         ticket.initializeData(movies);
 
-        System.out.printf("List of Movie\nTT| %-25s | %-20s | %-8s | %-18s |%-10s |\n", "Movie", "Director", "Duration", "Genre", "Premiere Date");
+
         for (int i = 0; i < moviesList.getMovieList().size(); i++) {
             System.out.println((i + 1) + "." + moviesList.getMovieList().get(i));
 
         }
-//Select Movie ( Just select movie 1 and movie 2 )
+//Select Movie ( Just select movie 1 and movie 2 (Demo) )
         int selectMovie = Utils.getNumber("Choose a movie by entering the corresponding number: ",
                 String.format("Invalid value.Please select again ( 1 - %d)", movies.size()), 1, movies.size(), Integer::parseInt);
 
         Movie selectedMovie = movies.get(selectMovie - 1);
 
         System.out.println("Available the show times of " + selectedMovie.getTitle() + ":");
+
         ArrayList<Showtimes> showtime = selectedMovie.getShowtimes();
         for (int i = 0; i < showtime.size(); i++) {
             System.out.println((i + 1) + "." + showtime.get(i));
@@ -73,7 +76,7 @@ public class CustomerController {
         
 // Select seat of each auditorium
         String selectSeat = Utils.getStringID("\nChoose seat :", "Invalid value.Please select again(A-E and 1-15)"
-                + "\n Ex: A2, B12, etc...", "[A-E]([1-9]|1[0-5])");
+                + "\nEx: A2, B12, etc...", "[A-E]([1-9]|1[0-5])");
         boolean check = false;
         while (!check) {
             if (!selectedAuditorium.bookedSeat(selectSeat)) {
@@ -83,7 +86,7 @@ public class CustomerController {
             } else {
                 System.out.println("Failed to book seat " + selectSeat + ". It may already be booked or invalid.");
                 selectSeat = Utils.getStringID("\nChoose seat :", "Invalid value.Please select again(A-E and 1-15)"
-                        + "\n Ex: A2, B12, etc...", "[A-E]([1-9]|1[0-5])");
+                        + "\nEx: A2, B12, etc...", "[A-E]([1-9]|1[0-5])");
             }
         }
         
@@ -93,7 +96,7 @@ public class CustomerController {
             System.out.println("-------------------\nSorry.Invalid value hour of showtime\nPlease select again: ");
             ticketBooking();
         }else{
-        System.out.printf("------------------------\nMoney must be paid :\n%d VND\n", price);}
+        System.out.printf("------------------------\nBill : " + ticket.formatCurrency(price) + "\n");}
         
         
     }

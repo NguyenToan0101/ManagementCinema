@@ -41,9 +41,7 @@ public class Showtimes {
         this.auditoriums.add(auditoriums);
     }
     
-//    public LocalDateTime getHour(){
-//        return showtimes.getHour();
-//    }
+
 
     @Override
     public String toString() {
