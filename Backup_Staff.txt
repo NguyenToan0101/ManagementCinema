@@ -1,0 +1,4 @@
+Staff{id='001', name='John Doe', dateOfBirth=01/01/1990, gender='Male', dayWorking=200, identityCardNumber='123456789', position='Cashier', salary=50000.0}
+Staff{id='002', name='Jane Smith', dateOfBirth=15/05/1985, gender='Female', dayWorking=180, identityCardNumber='987654321', position='Roomchecker', salary=45000.0}
+Staff{id='003', name='Bob Brown', dateOfBirth=23/08/1992, gender='Male', dayWorking=210, identityCardNumber='567890123', position='Cashier', salary=40000.0}
+Staff{id='12', name='ha', dateOfBirth=12/12/1212, gender='nam', dayWorking=12, identityCardNumber='1234', position='cahs', salary=12000.0}

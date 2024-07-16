@@ -110,7 +110,7 @@ public class Utils {
     }
 
 //    public static String normalizeName(String name) {
-//        name = name.replaceAll("[^a-zA-Z ]", "");
+//        name = name.replaceAll("[^a-zA-Z ]", 
 //        name = name.replaceAll("\\s+", " ");
 //
 //        String[] words = name.split("\\s+");
