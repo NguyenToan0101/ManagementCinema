@@ -6,18 +6,22 @@ package cinema.model;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
  *
  * @author ADMIN
  */
-public class Movie implements Comparable<Movie>{
+public class Movie implements Comparable<Movie> {
+
     private String title;
     private String director;
     private String movieDuration;
     private String genre;
     private Date premiereDate;
+    private ArrayList<Showtimes> showtimes;
+    private static final SimpleDateFormat date = new SimpleDateFormat("dd/MM/yyyy");
 
     public Movie(String title, String director, String movieDuration, String genre, String premiereDate) throws ParseException {
         this.title = title;
@@ -25,6 +29,11 @@ public class Movie implements Comparable<Movie>{
         this.movieDuration = movieDuration;
         this.genre = genre;
         setPremiereDate(premiereDate);
+        this.showtimes = new ArrayList();
+    }
+
+    public Movie() {
+
     }
 
     public String getTitle() {
@@ -65,23 +74,27 @@ public class Movie implements Comparable<Movie>{
 
     }
 
+    public ArrayList<Showtimes> getShowtimes() {
+        return showtimes;
+    }
+
+    public void addShowtimes(Showtimes showtimes) {
+        this.showtimes.add(showtimes);
+    }
+
     public void setPremiereDate(String premiereDate) throws ParseException {
-        SimpleDateFormat date = new SimpleDateFormat("dd/MM/yyyy");
+
         this.premiereDate = date.parse(premiereDate);
     }
 
-
-
     @Override
     public String toString() {
-        return "Movie{" + "title=" + title + ", director=" + director + ", movieDuration=" + movieDuration + ", genre=" + genre + ", premiereDate=" + premiereDate + '}';
+        return String.format("| %-25s | %-20s | %-8s | %-18s | %-10s | ", title, director, movieDuration,genre, date.format(premiereDate));
     }
 
     @Override
     public int compareTo(Movie o) {
         return o.getPremiereDate().compareTo(this.getPremiereDate());
     }
-    
-   
-    
+
 }

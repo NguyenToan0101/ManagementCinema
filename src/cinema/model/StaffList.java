@@ -236,10 +236,5 @@ public class StaffList {
         this.staffList = staffList;
     }
 
-    @Override
-    public String toString() {
-        return "StaffList{" +
-                "staffList=" + staffList +
-                '}';
-    }
+
 }

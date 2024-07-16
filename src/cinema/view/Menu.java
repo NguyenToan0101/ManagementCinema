@@ -68,7 +68,7 @@ public abstract class Menu {
         int choice = getSelected();
         boolean isValid = false;
             while (!isValid) {
-                if (choice > 0 && choice <=8) {
+                if (choice > 0 && choice <=5) {
                     isValid = true;
                 } else {
                     System.out.println("Input invalid value\nPlease input again: ");
@@ -80,15 +80,16 @@ public abstract class Menu {
             if (choice <= choices.size()) {
                 execute(choice);
                 //Program used for choose again.  
-                String chooseAgain = Utils.getValue("Do you want to choose again (Yes/No)?");
-                while (!"Yes".equals(chooseAgain) && !"No".equals(chooseAgain)) {
+                String choose = Utils.getValue("Do you want to choose again (Yes/No)?");
+                String chooseAgain = choose.toLowerCase();
+                while (!"yes".equals(chooseAgain.toLowerCase()) && !"no".equals(chooseAgain.toLowerCase())) {
                     chooseAgain = Utils.getValue("Invalid selection.\nPlease input again (Yes/No): ");
                 }
-                if ("Yes".equals(chooseAgain)) {
+                if ("yes".equals(chooseAgain)) {
 
                     System.out.println("Please choose again:");
 
-                } else if ("No".equals(chooseAgain)) {
+                } else if ("no".equals(chooseAgain)) {
                     System.out.println("The program has exited!");
                     System.exit(0);
                 }

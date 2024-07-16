@@ -27,7 +27,7 @@ public class MovieList {
 
     public MovieList() {
         movieList = new ArrayList<>();
-
+        readFile("MovieList.txt");
     }
 
     public ArrayList<Movie> getMovieList() {
@@ -76,7 +76,7 @@ public class MovieList {
     }
 
     public void getAllMovies(ArrayList<Movie> movieList) {
-        System.out.println("-------------------------------| List Of Staff |-------------------------------");
+        System.out.println("-------------------------------| List Of Movie |-------------------------------");
         if (movieList.isEmpty()) {
             System.out.println("Empty List.");
         } else {
