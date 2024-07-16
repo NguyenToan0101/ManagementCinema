@@ -87,9 +87,9 @@ public class Movie implements Comparable<Movie> {
         this.premiereDate = date.parse(premiereDate);
     }
 
-    @Override
+   @Override
     public String toString() {
-        return String.format("| %-25s | %-20s | %-8s | %-18s | %-10s | ", title, director, movieDuration,genre, date.format(premiereDate));
+        return String.format("| Movie name: %-25s | Director: %-20s | Movie Duration: %-8s | Genre: %-18s | Premiere date: %-10s | \n", title, director, movieDuration, genre, date.format(premiereDate));
     }
 
     @Override

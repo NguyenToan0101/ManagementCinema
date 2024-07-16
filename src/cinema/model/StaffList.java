@@ -22,7 +22,7 @@ public class StaffList {
     public StaffList() {
         this.staffList = new ArrayList<>();
         try {
-            readFromFile("Input.txt");
+            readFromFile("Staff.txt");
         } catch (IOException | ParseException e) {
             e.printStackTrace();
         }

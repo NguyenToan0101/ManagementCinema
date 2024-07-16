@@ -123,7 +123,7 @@ public class MovieList {
         Collections.sort(movieList);
     }
 
-    public ArrayList<Movie> searchStaff(Predicate<Movie> mv) {
+    public ArrayList<Movie> searchMovie(Predicate<Movie> mv) {
         ArrayList<Movie> searchResults = new ArrayList<>();
         for (Movie movie : movieList) {
             if (mv.test(movie)) {
@@ -150,5 +150,11 @@ public class MovieList {
 
         }
         return norm.toString().trim();
+    }
+    public boolean deleteMovie(Predicate<Movie> p) {
+        for (Movie e : movieList) {
+            return movieList.removeIf(p);
+        }
+        return false;
     }
 }

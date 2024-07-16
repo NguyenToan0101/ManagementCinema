@@ -41,7 +41,7 @@ public class ManagementCinema extends Menu {
                
                 break;
             case 2:
-                // Handle Staff actions if needed
+                
                 staffController.subMenuTask();
                 break;
             case 3:
