@@ -19,7 +19,7 @@ public class AdminController extends Menu {
     private static final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
     public AdminController() {
-        this.staffList = new StaffList("Input.txt");
+        this.staffList = new StaffList();
     }
 
     @Override

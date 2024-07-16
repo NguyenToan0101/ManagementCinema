@@ -10,9 +10,7 @@ import cinema.model.MovieList;
 import cinema.model.Showtimes;
 import cinema.model.Utils;
 import cinema.model.Ticket;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.HashSet;
 
 /**
  *

@@ -19,7 +19,7 @@ public class StaffList {
     private ArrayList<Staff> staffList;
     private static final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
-    public StaffList(String filename) {
+    public StaffList() {
         this.staffList = new ArrayList<>();
         try {
             readFromFile("Input.txt");
