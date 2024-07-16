@@ -97,16 +97,8 @@ public class Staff {
     @Override
     public String toString() {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        return "Staff{"
-                + "id='" + id + '\''
-                + ", name='" + name + '\''
-                + ", dateOfBirth=" + sdf.format(dateOfBirth)
-                + ", gender='" + gender + '\''
-                + ", dayWorking=" + dayWorking
-                + ", identityCardNumber='" + identityCardNumber + '\''
-                + ", position='" + position + '\''
-                + ", salary=" + salary
-                + '}';
+        return String.format("| %-10s | %-30s | %-12s | %-6s | %-12s | %-15s | %-20s | %,.2f |",
+                id, name, sdf.format(dateOfBirth), gender, dayWorking, identityCardNumber, position, salary);
     }
 
 }
