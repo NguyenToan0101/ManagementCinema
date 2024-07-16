@@ -19,6 +19,7 @@ public class ManagementCinema extends Menu {
 
     CustomerController customerController;
     AdminController adminController;
+  StaffController staffController;
 
     static String[] mainMenu = {"ADMIN", "STAFF", "CUSTOMER", "EXIT"};
 
@@ -29,7 +30,7 @@ public class ManagementCinema extends Menu {
 
         customerController = new CustomerController();
         adminController = new AdminController();
-
+  staffController = new StaffController();
     }
 
     @Override
@@ -41,6 +42,7 @@ public class ManagementCinema extends Menu {
                 break;
             case 2:
                 // Handle Staff actions if needed
+                staffController.subMenuTask();
                 break;
             case 3:
                 subMenuCustomer();
