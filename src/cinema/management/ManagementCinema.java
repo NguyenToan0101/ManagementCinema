@@ -6,7 +6,6 @@ package cinema.management;
 
 import cinema.model.MovieList;
 
-
 import cinema.view.Menu;
 import java.io.IOException;
 
@@ -19,7 +18,7 @@ public class ManagementCinema extends Menu {
     MovieList movieList;
 
     CustomerController customerController;
-    
+    AdminController adminController;
 
     static String[] mainMenu = {"ADMIN", "STAFF", "CUSTOMER", "EXIT"};
 
@@ -27,9 +26,9 @@ public class ManagementCinema extends Menu {
         super("|WHO ARE YOU?|", mainMenu);
 
         this.movieList = new MovieList();
-        
-        
+
         customerController = new CustomerController();
+        adminController = new AdminController();
 
     }
 
@@ -37,26 +36,28 @@ public class ManagementCinema extends Menu {
     public void execute(int choice) {
         switch (choice) {
             case 1:
-
+                adminController.subMenuAdmin();
+               
                 break;
             case 2:
+                // Handle Staff actions if needed
                 break;
             case 3:
                 subMenuCustomer();
-
                 break;
             case 4:
                 System.out.println("Exiting...");
                 System.exit(0);
                 break;
             default:
-                throw new AssertionError();
+                System.out.println("Invalid choice.");
+                break;
         }
     }
 
     public void subMenuCustomer() {
 
-        String[] subMenuCustom = {"Test", "See list of movie", "Book ticket","Quit"};
+        String[] subMenuCustom = {"Test", "See list of movie", "Book ticket", "Quit"};
         Menu subMenuCus = new Menu("Menu Customer", subMenuCustom) {
 
             @Override
@@ -64,7 +65,7 @@ public class ManagementCinema extends Menu {
                 switch (choice) {
                     case 1:
 //                        
-                        
+
                         break;
 
                     case 2:
@@ -82,8 +83,6 @@ public class ManagementCinema extends Menu {
         };
         subMenuCus.run();
     }
-    
-    
 
     public static void main(String[] args) throws IOException {
         ManagementCinema managementCinema = new ManagementCinema();

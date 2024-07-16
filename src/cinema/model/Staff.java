@@ -4,6 +4,7 @@ import java.util.Date;
 import java.text.SimpleDateFormat;
 
 public class Staff {
+
     private String id;
     private String name;
     private Date dateOfBirth;
@@ -89,18 +90,23 @@ public class Staff {
         this.salary = salary;
     }
 
+    public double calculateSalary() {
+        return salary * dayWorking;
+    }
+
     @Override
     public String toString() {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        return "Staff{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", dateOfBirth=" + sdf.format(dateOfBirth) +
-                ", gender='" + gender + '\'' +
-                ", dayWorking=" + dayWorking +
-                ", identityCardNumber='" + identityCardNumber + '\'' +
-                ", position='" + position + '\'' +
-                ", salary=" + salary +
-                '}';
+        return "Staff{"
+                + "id='" + id + '\''
+                + ", name='" + name + '\''
+                + ", dateOfBirth=" + sdf.format(dateOfBirth)
+                + ", gender='" + gender + '\''
+                + ", dayWorking=" + dayWorking
+                + ", identityCardNumber='" + identityCardNumber + '\''
+                + ", position='" + position + '\''
+                + ", salary=" + salary
+                + '}';
     }
+
 }
