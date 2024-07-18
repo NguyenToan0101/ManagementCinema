@@ -4,6 +4,7 @@
  */
 package cinema.management;
 
+import cinema.model.Account;
 import cinema.model.MovieList;
 
 import cinema.view.Menu;
@@ -22,7 +23,7 @@ public class ManagementCinema extends Menu {
     CustomerController customerController;
     AdminController adminController;
   StaffController staffController;
-
+Account acc;
     static String[] mainMenu = {"ADMIN", "STAFF", "CUSTOMER", "EXIT"};
 
     public ManagementCinema() throws IOException {
@@ -33,18 +34,29 @@ public class ManagementCinema extends Menu {
         customerController = new CustomerController();
         adminController = new AdminController();
   staffController = new StaffController();
+  acc = new Account();
     }
 
     @Override
     public void execute(int choice) {
         switch (choice) {
             case 1:
-                adminController.subMenuAdmin();
-               
+                
+               if(acc.accAdmin()){
+            adminController.subMenuAdmin();
+        }else{
+            System.out.println("Over 3 times.\nExiting");
+            System.exit(0);
+        }
                 break;
             case 2:
                 
-                staffController.subMenuTask();
+                        if(acc.accStaff()){
+            staffController.subMenuTask();
+        }else{
+            System.out.println("Over 3 times.\nExiting");
+            System.exit(0);
+        }
                 break;
             case 3:
                 subMenuCustomer();
@@ -61,7 +73,7 @@ public class ManagementCinema extends Menu {
 
     public void subMenuCustomer() {
 
-        String[] subMenuCustom = {"Test", "See list of movie", "Book ticket","Back to main menu", "Quit"};
+        String[] subMenuCustom = {"See cash of ticket", "See list of movie", "Book ticket","Back to main menu", "Quit"};
         Menu subMenuCus = new Menu("Menu Customer", subMenuCustom) {
 
             @Override
@@ -100,6 +112,23 @@ break;
         };
         subMenuCus.run();
     }
+    
+//    public void checkAccStaff(){
+//        if(acc.accStaff()){
+//            staffController.subMenuTask();
+//        }else{
+//            System.out.println("Over 3 times.\nExiting");
+//            System.exit(0);
+//        }
+//    }
+//    public void checkAccAdmin(){
+//        if(acc.accAdmin()){
+//            staffController.subMenuTask();
+//        }else{
+//            System.out.println("Over 3 times.\nExiting");
+//            System.exit(0);
+//        }
+//    }
 
     public static void main(String[] args) throws IOException {
         ManagementCinema managementCinema = new ManagementCinema();

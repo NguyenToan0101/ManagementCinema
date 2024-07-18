@@ -24,12 +24,10 @@ public class Ticket {
         moviesList = new MovieList();
         showtimesList = new ShowtimesList();
         auditoriumList = new AuditoriumList();
-        movie =  new Movie();
+      movie  = new Movie();
     }
 
-    public Movie getMovie() {
-        return movie;
-    }
+    
 
 // Example of initialization movie 1 and movie 2
     public void initializeData(ArrayList<Movie> movieList) {
@@ -89,26 +87,23 @@ public class Ticket {
 
         movieList.add(movieS1);
         movieList.add(movieS2);
-//        if(movie != null){
-//            movieList.add(movie);
-//        }
+        
     }
 
-    public void initializeDataByStaff(int selectMovie, ArrayList<Integer> selectShowtime, ArrayList<Integer> selectAuditorium) {
-        movie = moviesList.getMovieList().get(selectMovie );
+    
+
+
+     public void initializeDataByStaff(int selectMovie, ArrayList<Integer> selectShowtime, ArrayList<Integer> selectAuditorium) {
+         movie = moviesList.getMovieList().get(selectMovie);
 
         for (Integer showtime : selectShowtime) {
-            movie.addShowtimes(showtimesList.getShowtimesList().get(showtime));
+            Showtimes st = showtimesList.getShowtimesList().get(showtime);
+            movie.addShowtimes(st);
             for (Integer auditorium : selectAuditorium) {
-                showtimesList.getShowtimesList().get(showtime).addAuditoriums(auditoriumList.getAuditoriumList().get(auditorium));
+                st.addAuditoriums(auditoriumList.getAuditoriumList().get(auditorium));
             }
         }
-        
-
-        
-
     }
-
     public double calculateTicketPrice(String seatType, int typePerson, LocalDateTime dateOfWeek, LocalDateTime hourOfday) {
         double price = 0;
         double TAX = 0.05;
@@ -236,7 +231,7 @@ public class Ticket {
     public void displayBill( String nameMovie,String movieDuration, LocalDateTime showtime, String auditorium, String seat,double price){
         System.out.println("         Theater entrance card\n" +"Booking time: "+LocalDateTime.now());
         System.out.println("===========================================\n"+nameMovie +"\nShowtime: "+ showtime + "     " + movieDuration + "min");
-        System.out.println("Seat: " + seat + "\n===========================================");
+        System.out.println(auditorium + "\nSeat: " + seat + "\n===========================================");
         System.out.println("Bill : " + formatCurrency(price) + "\n");
         
         

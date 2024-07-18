@@ -42,6 +42,10 @@ public class CustomerController {
         ticket.initializeData(movies);
         movies = Utils.removeDuplicates(movies);
     Utils.displayList("List of movie", movies);
+     if (movies.isEmpty()) {
+        System.out.println("No movies available for booking.");
+        return;
+    }
 //Select Movie ( Just select movie 1 and movie 2 (Demo) )
         int selectMovie = Utils.getNumber("Choose a movie by entering the corresponding number: ",
                 String.format("Invalid value.Please select again ( 1 - %d)", movies.size()), 1, movies.size(), Integer::parseInt);
@@ -51,7 +55,10 @@ public class CustomerController {
 ArrayList<Showtimes> showtime = selectedMovie.getShowtimes();
     showtime = Utils.removeDuplicates(showtime);
     Utils.displayList("Available the show times of " + selectedMovie.getTitle() + ":", showtime);
-    
+    if (showtime.isEmpty()) {
+        System.out.println("No showtimes available for the selected movie.");
+        return;
+    }
 //Select showtime of each movie
         int selectShowtime = Utils.getNumber("Choose a showtime by entering the correspoding number : ",
                 String.format("Invalid value.Please select again ( 1 - %d)", showtime.size()), 1, showtime.size(), Integer::parseInt);
@@ -60,6 +67,10 @@ ArrayList<Showtimes> showtime = selectedMovie.getShowtimes();
         ArrayList<Auditorium> auditoriums = selectedShowtime.getAuditoriums();
         auditoriums = Utils.removeDuplicates(auditoriums);
 Utils.displayList("Available the auditorium of " + selectedShowtime.getShowtimes() + ":", auditoriums);
+if (auditoriums.isEmpty()) {
+        System.out.println("No auditoriums available for the selected showtime.");
+        return;
+    }
 //Select auditorium of each showtime
         int selectAuditorium = Utils.getNumber("Choose an auditorium by entering the correspoding number : ",
                 String.format("Invalid value.Please select again ( 1 - %d)", auditoriums.size()), 1, auditoriums.size(), Integer::parseInt);
@@ -87,7 +98,7 @@ Utils.displayList("Available the auditorium of " + selectedShowtime.getShowtimes
         double price = (double) ticket.calculateTicketPrice(selectSeat, selectTypePerson, selectedShowtime.getShowtimes(), selectedShowtime.getShowtimes());
 
 
-    ticket.displayBill(selectedMovie.getTitle(),selectedMovie.getMovieDuration(), selectedShowtime.getShowtimes(), selectSeat, selectSeat, price);
+    ticket.displayBill(selectedMovie.getTitle(),selectedMovie.getMovieDuration(), selectedShowtime.getShowtimes(), selectedAuditorium.getNameRoom(), selectSeat, price);
 
     }
 }
