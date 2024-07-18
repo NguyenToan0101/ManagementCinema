@@ -6,6 +6,10 @@ package cinema.model;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Scanner;
 import java.util.function.Function;
 
@@ -125,5 +129,35 @@ public class Utils {
 //        }
 //        return normalized.toString().trim();
 //    }
+      public static <T> void display(String tittle, ArrayList<T> ls) {
+        System.out.println(tittle + "\n-------------------------------------------------------------");
+        for (T b : ls) {
+            System.out.println(b);
+        }
+        System.out.println("-------------------------------------------------------------");
+        System.out.println("Total : " + ls.size());
+    }
+      
+    public static <T> void displayList(String tittle, ArrayList<T> list){
+        System.out.println(tittle + "\n-------------------------------------------------------------");
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println((i + 1) + "." + list.get(i));
+        }
+         System.out.println("-------------------------------------------------------------");
+    }
+    
+    public static <T> ArrayList<T> removeDuplicates(ArrayList<T> list){
+        HashSet<T> set = new HashSet<>(list);
+        return new ArrayList<>(set);
+    } 
+    
+      public static LocalDate toLocalDate(String dob){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        return LocalDate.parse(dob, formatter);
+    }
 
+    public static String toStringDate(LocalDate date){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy,HH:mm");
+        return formatter.format(date);
+    } 
 }

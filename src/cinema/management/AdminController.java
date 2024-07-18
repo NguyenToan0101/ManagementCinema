@@ -69,8 +69,14 @@ public class AdminController extends Menu {
             System.out.println("Empty List.");
         } else {
             System.out.println("-------------------------------| List Of Staff |-------------------------------");
+            System.out.printf("| %-10s | %-30s | %-12s | %-6s | %-12s | %-15s | %-20s | %10s |\n",
+                    "ID", "Name", "Date of Birth", "Gender", "Days Worked", "Identity Card", "Position", "Salary");
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
             for (Staff st : staff) {
                 System.out.println(st);
+                System.out.printf("| %-10s | %-30s | %-12s | %-6s | %-12d | %-15s | %-20s | %,.2f |\n",
+                        st.getId(), st.getName(), sdf.format(st.getDateOfBirth()), st.getGender(),
+                        st.getDayWorking(), st.getIdentityCardNumber(), st.getPosition(), st.getSalary());
             }
             System.out.println("---------------------------------------------------------------------------");
         }
@@ -103,7 +109,7 @@ public class AdminController extends Menu {
         }
     }
 
-    public void searchStaff() {
+        public void searchStaff() {
         String[] searchArr = {"ID", "Name", "Date of Birth", "Gender", "Day Working", "Identity Card Number", "Position", "Salary"};
         System.out.println("Search by:");
         for (int i = 0; i < searchArr.length; i++) {
@@ -113,6 +119,12 @@ public class AdminController extends Menu {
         String value = Utils.getValue("Enter " + searchArr[choice - 1] + ": ");
 
         staffList.searchByCriteria(choice, value).forEach(System.out::println);
+        List<Staff> searchResults = staffList.searchByCriteria(choice, value);
+        if (searchResults.isEmpty()) {
+            System.out.println("Not found.");
+        } else {
+            searchResults.forEach(System.out::println);
+        }
     }
 
     public void sortStaff() {

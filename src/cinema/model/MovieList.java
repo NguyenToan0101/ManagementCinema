@@ -86,17 +86,11 @@ public class MovieList {
             System.out.println("---------------------------------------------------------------------------");
         }
     }
-
-    public void addMovie() throws ParseException {
-        String title = formatName(Utils.getValue("Enter movie name: "));
-        String director = formatName(Utils.getValue("Enter director name: "));
-        String movieDuration = Utils.getValue("Enter movie duration: ");
-        String genre = Utils.getValue("Enter genre: ");
-        String premiereDate = Utils.getValue("Enter date of birth(dd/MM/yyyy): ");;
-
-        Movie newSMovie = new Movie(title, director, movieDuration, genre, premiereDate);
-
+    
+    public void addMovie(Movie m){
+        movieList.add(m);
     }
+
     
     public void sortMovieByTitle() {
 

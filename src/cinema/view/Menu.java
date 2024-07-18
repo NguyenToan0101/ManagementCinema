@@ -56,9 +56,9 @@ public abstract class Menu {
     }
     public int getSelected(){
         printMenu();
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter your selection");
-        return scanner.nextInt();
+
+        int choice = Utils.getNumber("Enter your selection", "Invalid value of number\nPlease input again", 0, choices.size(), Integer::parseInt);
+        return choice;
     }
     
     public abstract void execute(int choice);
@@ -68,7 +68,7 @@ public abstract class Menu {
         int choice = getSelected();
         boolean isValid = false;
             while (!isValid) {
-                if (choice > 0 && choice <=5) {
+                if (choice > 0 && choice <=8) {
                     isValid = true;
                 } else {
                     System.out.println("Input invalid value\nPlease input again: ");

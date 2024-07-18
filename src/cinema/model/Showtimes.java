@@ -4,6 +4,7 @@
  */
 package cinema.model;
 
+import java.time.DateTimeException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -26,7 +27,14 @@ public class Showtimes {
     
 
     public LocalDateTime getShowtimes() {
-        return showtimes;
+        LocalDateTime now = LocalDateTime.now();
+        if(this.showtimes.isAfter(now) && this.showtimes.getHour() >= 8 &&  this.showtimes.getHour() <= 24 ){
+            return showtimes;
+        }
+        
+            throw new DateTimeException("Invalid Showtime");
+        
+        
     }
     
     public void setShowtimes(LocalDateTime showtimes) {
@@ -41,7 +49,13 @@ public class Showtimes {
         this.auditoriums.add(auditoriums);
     }
     
-
+//    public void isValidShowtime() throws Exception{
+//        LocalDateTime now = LocalDateTime.now();
+//        if(this.showtimes.isBefore(now) && this.showtimes.getHour() > 8 &&  this.showtimes.getHour() < 24 ){
+//            throw new Exception("Invalid showtime");
+//        }
+//    }
+    
 
     @Override
     public String toString() {

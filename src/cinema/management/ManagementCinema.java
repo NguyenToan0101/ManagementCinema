@@ -8,6 +8,8 @@ import cinema.model.MovieList;
 
 import cinema.view.Menu;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -59,7 +61,7 @@ public class ManagementCinema extends Menu {
 
     public void subMenuCustomer() {
 
-        String[] subMenuCustom = {"Test", "See list of movie", "Book ticket", "Quit"};
+        String[] subMenuCustom = {"Test", "See list of movie", "Book ticket","Back to main menu", "Quit"};
         Menu subMenuCus = new Menu("Menu Customer", subMenuCustom) {
 
             @Override
@@ -76,9 +78,22 @@ public class ManagementCinema extends Menu {
                     case 3:
                         customerController.ticketBooking();
                         break;
+                    
+                        
                     case 4:
                         System.out.println("Exiting...");
+                        ManagementCinema managementCinema = null;
+                    try {
+                        managementCinema = new ManagementCinema();
+                    } catch (IOException ex) {
+                        Logger.getLogger(ManagementCinema.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+        managementCinema.run();
+break;
+                    case 5: 
+                        System.out.println("Exit");
                         System.exit(0);
+    
                 }
             }
 
